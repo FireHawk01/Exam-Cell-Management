@@ -1,0 +1,63 @@
+{% extends 'faculty/base.html' %}
+{% block content %}
+{% load static %}
+    <div>
+        <h1>Student Results</h1>
+          <div>
+            
+            <div>
+             <form class="form-inline" action="" method="POST">
+              {% csrf_token %}
+                  <div class="form-group mx-sm-3 mb-2">
+                    <label for="rollno" class="sr-only">Enrollment Number</label>
+                    <input type="text" class="form-control" name='rollno' id='rollno' placeholder="Enrollment Number">
+                  
+
+                  <select  class="form-control"  name="sem">
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                  </select>
+
+                  </div>
+
+                  <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </form>
+            </div>
+          </div>
+           
+                <table class="table table-sm">  
+                  <tbody>     
+                
+                      {% for key,value in marks %}
+                      <tr>
+                        {% if value != 'F' and value != '' %}
+                      <td class="table-success">{{ key }} </td>     
+                      <td class="table-success">{{ value }} </td>     
+                        {% elif value != '' %}
+                      <td class="table-danger">{{ key }} </td>  
+                      <td class="table-danger">{{ value }} </td>        
+                        {% endif %}
+                       </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+             
+          
+      </div>
+      <br>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <div class = "alert alert-danger" style="border-right-width: px;padding-left: 5px;margin-left: -38px;">{{message}}</div>
+          {% endfor %}
+      </ul>
+      {% endif %}
+           
+             
+ {% endblock content %}

@@ -8,7 +8,9 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 
 def home(request):
-    return render(request, 'exam/base.html')
+	if request.user.groups.filter(name = 'faculty').exists():
+		return redirect('/faculty/home')
+	return render(request, 'exam/base.html')
 
 @login_required
 def result(request):
@@ -20,7 +22,7 @@ def result(request):
 def show(request):
 	if request.method == 'POST':
 		#sem1 = Sem1(enroll_no='lit2018070',SGPI='3.4')
-		Sem1.objects.get(enroll_no='lit2018070').delete()
+		#Sem1.objects.get(enroll_no='lit2018070').delete()
 		enroll_no = request.user.username
 		subject_res=dict()
 		semester = request.POST.get('semester')

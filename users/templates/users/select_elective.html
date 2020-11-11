@@ -1,0 +1,71 @@
+{% extends 'exam/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+		<title>Elective</title>
+
+	
+</head>
+<body>
+	<br><h4>Elective</h4><br>
+	<div class="mdl-cell mdl-cell--12-col mdl-grid">
+	<div>
+	<p>Choose Elective</p>
+	<form id="dept-sem-form" name='action' value='elective' action="" method="POST">
+       {% csrf_token %}
+	   
+	           
+                                <form class="form-horizontal" role="form">
+                                  <div class="form-group">
+                                    <label for="filter">Elective 1</label>
+                                    <select class="form-control" name='Elective 1'>
+                                      {% for elective in electives %}
+                                        <option value="{{ elective }}">{{ elective }}</option>
+                                      {% endfor %}
+                                    </select>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="filter">Elective 2</label>
+                                    <select class="form-control" name='Elective 2'>
+                                      {% for elective in electives %}
+                                        <option value="{{ elective }}">{{ elective }}</option>
+                                      {% endfor %}
+                                    </select>
+                                  </div>
+
+                                  {% if semester %}
+                                    <div class="form-group">
+                                    <label for="filter">Elective 3</label>
+                                    <select class="form-control" name='Elective 3'>
+                                      {% for elective in electives %}
+                                        <option value="{{ elective }}">{{ elective }}</option>
+                                      {% endfor %}
+                                    </select>
+                                    </div>
+                                  {% endif %}
+                                </form>
+                            
+                      
+                
+         </form>
+                 <button  type="submit" form="dept-sem-form"     class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">
+                      Apply
+                </button>
+        </div>	
+    </div>
+        <br>
+        {% if messages %}
+			<ul class="messages">
+    		{% for message in messages %}
+    		<div class = "alert alert-danger" style="margin-left: -25px";>{{message}}</div>
+   				{% endfor %}
+			</ul>
+		{% endif %}
+		
+</body>
+</html>	
+{%endblock content%}

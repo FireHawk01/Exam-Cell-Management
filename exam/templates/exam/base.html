@@ -71,11 +71,11 @@
 		      </li>
 		      {% endif %}
 		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#">
-		          <i class="fa fa-envelope-o">
+		        <a class="nav-link disabled" href="{% url 'showprofile' %}">
+		          <i class="fa fa-user-o">
 		            <span class="badge badge-warning">11</span>
 		          </i>
-		          Disabled
+		          Profile
 		        </a>
 		      </li>
 		      <li class="nav-item dropdown">
@@ -86,10 +86,10 @@
 		          More
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Action</a>
-		          <a class="dropdown-item" href="#">Another action</a>
+		          <a class="dropdown-item" href="#">More items</a>
+		          <a class="dropdown-item" href="{% url 'elective' %}">Elective</a>
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" href="#">Something else here</a>
+		          <a class="dropdown-item" href="{% url 'backlogs' %}">Backlogs</a>
 		        </div>
 		      </li>
 		    </ul>
@@ -128,7 +128,7 @@
 
 		<main role="main" class="container">
 		  <div class="row">
-		    <div class="col-md-8">
+		    <div class="col-md-9">
 		    	<!--{% if messages %}
 		    		{% for message in messages %}
 		    			<div class = "alert alert-{{ message.tags }}">{{message}}</div>
@@ -137,7 +137,7 @@
 		      {% block content %}{% endblock %}
 		    	
 		    </div>
-		    <div class="col-md-4">
+		    <div class="col-md-3">
 		      <div class="content-section">	 
 		          <ul class="list-group">
 		            <li class="list-group-item list-group-item-light">Latest Posts</li>

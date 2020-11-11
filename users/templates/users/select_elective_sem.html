@@ -1,0 +1,51 @@
+{% extends 'exam/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+		<title>Elective</title>
+
+	
+</head>
+<body>
+	<br><h4>Elective</h4>
+  <br><a href="{% url 'elective' %}" style="color:blue;">Back</a><br>
+	<div class="mdl-cell mdl-cell--12-col mdl-grid">
+	<div>
+	<p>Choose Semester</p>
+	<form id="dept-sem-form" name='action' value='semester' action="select/" method="POST" >
+       {% csrf_token %}
+	   
+	   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
+                    <input type="text" class="mdl-textfield__input" id="semester" readonly>
+                    <input type="hidden" value="" name="semester">
+                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                    <label for="semester" class="mdl-textfield__label">Semester</label>
+                    <ul for="semester" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        {% for sem in semesters %}
+                            <li class="mdl-menu__item" data-val="{{ sem }}">{{ sem }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+         </form>
+                 <button  type="submit" form="dept-sem-form"     class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">
+                      Next
+                </button>
+        </div>	
+    </div>
+
+    <br>
+        {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <div class = "alert alert-danger" style="margin-left: -25px";>{{message}}</div>
+          {% endfor %}
+      </ul>
+    {% endif %}
+		
+</body>
+</html>	
+{%endblock content%}

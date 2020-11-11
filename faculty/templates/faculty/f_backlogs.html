@@ -1,0 +1,33 @@
+{% extends 'faculty/base.html' %}
+{% block content %}
+{% load static %}
+<div>
+        <h1>Students with Backlogs</h1>
+         <table class="table table-striped">
+
+			  <thead>
+			    <tr>
+			      <th scope="col">Enrollment Number</th>
+			      <th scope="col">Semester</th>
+			      <th scope="col">Subject</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	
+			    {% for key,value in backlogs.items %}    
+				{% for k,v in value %}
+			     <tr class="table-danger">
+			       <th scope="row">{{ key }}</th>
+			       <th scope="row">{{ k }}</th>
+			       <th scope="row">{{ v }}</th>
+			    </tr>
+			    {% endfor %}
+			    {% endfor %}
+			     
+			   
+			    
+			  </tbody>
+			</table>
+</div>
+
+{% endblock content %}

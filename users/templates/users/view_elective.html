@@ -1,0 +1,44 @@
+{% extends 'exam/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+		<title>My Electives</title>
+
+	
+</head>
+<body>
+  <br> 
+  <br><a href="{% url 'elective' %}" style="color:blue;">Back</a>
+  <h3> <span class="badge badge-secondary">My Electives</span></h3>
+  <br>
+  
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Semester</th>
+      <th scope="col">Elective</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for elective in electives %}
+    <tr>
+      <th scope="row">Semester {{ elective.semester }}</th>
+      <td>{{ elective.elective }}</td>
+      <td>{% if elective.approved %}
+  				<span class="badge badge-pill badge-success">Approved</span>
+  		  {% else %}
+  			    <span class="badge badge-pill badge-danger">Pending</span>
+  		  {% endif %}</td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+	
+</body>
+</html>	
+{%endblock content%}

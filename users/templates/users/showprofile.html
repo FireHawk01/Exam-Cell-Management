@@ -1,0 +1,20 @@
+{% extends "exam/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+	<br>
+    
+    	{% if context %}           
+          <ul class="list-group">
+              <li class="list-group-item">Enrollment Number: {{ context.user.username }}</li>
+              <li class="list-group-item">Name: {{ context.user.first_name }} {{ context.user.last_name }}</li>
+              <li class="list-group-item">Contact: {{ context.contact }} </li>
+              <li class="list-group-item">Address: {{ context.address }} </li>
+              <li class="list-group-item">Cumulative SGPI: {{ context.net_sgpi }} </li>
+          </ul>
+         {% endif %}
+           
+   <a href="{% url 'updateprofile' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update</a>
+      
+   
+{% endblock content %}

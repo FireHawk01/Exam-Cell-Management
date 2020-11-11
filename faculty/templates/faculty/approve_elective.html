@@ -1,0 +1,42 @@
+{% extends 'faculty/base.html' %}
+{% block content %}
+{% load static %}
+<div>
+        <h1>Approve Electives</h1>
+         <table class="table table-striped">
+
+			  <thead>
+			    <tr>
+			      <th scope="col">Enrollment Number</th>
+			      <th scope="col">Name</th>
+			      <th scope="col">Semester</th>
+			      <th scope="col">Subject</th>
+			      <th scope="col">Action</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	
+			    {% for ele in elective %} 
+			    <form method="POST" action="">
+					{% csrf_token %} 
+				<input type="hidden" name="idd1" value="{{ ele.user.username }} {{ ele.semester }}">	
+				<input type="hidden" name="idd2" value="{{ ele.elective }}">			
+			     <tr> 
+			     	<th scope="row">{{ ele.user.username }}</th>
+			     	<th scope="row">{{ ele.user.first_name }} {{ ele.user.last_name }}</th>
+			       <th scope="row">{{ ele.semester }}</th>
+			       <th scope="row">{{ ele.elective }}</th>
+			       <th scope="row"><button class="btn btn-primary btn-sm" type="submit">Approve</a></th>
+			       
+			    </tr>
+			    </form>	
+			    
+			    {% endfor %}
+			     
+			   
+			    
+			  </tbody>
+			</table>
+</div>
+
+{% endblock content %}

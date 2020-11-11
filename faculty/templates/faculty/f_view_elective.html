@@ -1,0 +1,57 @@
+{% extends 'faculty/base.html' %}
+{% block content %}
+{% load static %}
+    <div>
+        <h1>View Student Electives</h1>
+          <div>
+            
+            <div>
+             <form class="form-inline" action="" method="POST">
+              {% csrf_token %}
+                  <div class="form-group mx-sm-3 mb-2">
+                    <label for="rollno" class="sr-only">Enrollment Number</label>
+                    <input type="text" class="form-control" name='rollno' id='rollno' placeholder="Enrollment Number">
+                  </div>
+                  <button type="submit" class="btn btn-primary mb-2">View Electives</button>
+            </form>
+            </div>
+          </div>
+           {% if elective %}
+         <table class="table table-striped">
+
+              <thead>
+                <tr>
+                  <th scope="col">Enrollment Number</th>
+                  <th scope="col">Semester</th>
+                  <th scope="col">Subject</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                {% for ele in elective %}               
+                 <tr >
+                  <th scope="row">{{ ele.user.username }}</th>
+                   <th scope="row">{{ ele.semester }}</th>
+                   <th scope="row">{{ ele.elective }}</th>
+                 </tr>
+                
+                {% endfor %}
+                 
+               
+                
+              </tbody>
+            </table>
+            {% endif %}
+          
+      </div>
+      <br>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <div class = "alert alert-danger" style="border-right-width: px;padding-left: 5px;margin-left: -38px;">{{message}}</div>
+          {% endfor %}
+      </ul>
+      {% endif %}
+           
+             
+ {% endblock content %}

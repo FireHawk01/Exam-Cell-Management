@@ -1,0 +1,39 @@
+{% extends 'faculty/base.html' %}
+{% block content %}
+{% load static %}
+    <div>
+        <h1>View Student Profile</h1>
+          <div>
+            
+            <div>
+             <form class="form-inline" action="" method="POST">
+              {% csrf_token %}
+                  <div class="form-group mx-sm-3 mb-2">
+                    <label for="rollno" class="sr-only">Enrollment Number</label>
+                    <input type="text" class="form-control" name='rollno' id='rollno' placeholder="Enrollment Number">
+                  </div>
+                  <button type="submit" class="btn btn-primary mb-2">View Profile</button>
+            </form>
+            </div>
+          
+          {% if profile %}           
+          <ul class="list-group">
+              <li class="list-group-item"><h4>Enrollment Number: {{ profile.user.username }}</h4></li>
+              <li class="list-group-item"><h4>Name: {{ profile.user.first_name }} {{ profile.user.last_name }}</h4></li>
+              <li class="list-group-item"><h4>Contact: {{ profile.contact }} </h4></li>
+              <li class="list-group-item"><h4>Address: {{ profile.address }} </h4></li>
+              <li class="list-group-item"><h4>Cumulative SGPI: {{ profile.net_sgpi }} </h4></li>
+          </ul>
+         {% endif %}
+         </div>
+      <br>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <div class = "alert alert-danger" style="border-right-width: px;padding-left: 5px;margin-left: -38px;">{{message}}</div>
+          {% endfor %}
+      </ul>
+      {% endif %}
+           
+             
+ {% endblock content %}
