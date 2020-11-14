@@ -3,9 +3,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Sem1,Sem2,Sem3,Sem4,Sem5,Sem6,Sem7,Sem8
 from django.db import models
 from django.contrib import messages
-import io
-from django.http import FileResponse
+import io, os
+from django.http import FileResponse, HttpResponse, Http404
 from reportlab.pdfgen import canvas
+from faculty.models import Announcements
+from django.conf import settings
+
 
 def home(request):
 	if request.user.groups.filter(name = 'faculty').exists():
@@ -122,3 +125,21 @@ def show(request):
 	else:
 		return redirect('result')
 
+
+
+def announcements(request):
+	query = Announcements.objects.all()
+	return render(request,"exam/announcements.html",{"announcements":query})
+
+
+
+def download(request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    print("*")
+    print (file_path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404

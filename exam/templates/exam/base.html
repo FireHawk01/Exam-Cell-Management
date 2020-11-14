@@ -56,7 +56,7 @@
 		          </a>
 		      </li>
 		      {% if user.is_authenticated %}
-		      {% if request.path == '/result/' %} 
+		      {% if request.path == '/result/' or request.path == '/result/show/' %} 
 		        <li class="nav-item active">
 		      	  {% else %}
 		        <li class="nav-item">
@@ -69,11 +69,14 @@
 		          Results
 		        </a>
 		      </li>
+		  
+		      {% if request.path == '/users/profile/' %} 
+		        <li class="nav-item active">
+		      	  {% else %}
+		        <li class="nav-item">
 		      {% endif %}
-		      <li class="nav-item">
-		        <a class="nav-link disabled" href="{% url 'showprofile' %}">
+		        <a class="nav-link" href="{% url 'showprofile' %}">
 		          <i class="fa fa-user-o">
-		            <span class="badge badge-warning">11</span>
 		          </i>
 		          Profile
 		        </a>
@@ -110,7 +113,9 @@
 		          Test
 		        </a>
 		      </li>
+		      {% endif %}
 		    </ul>
+
 		    {% if user.is_authenticated %}
 		      <form class="form-inline my-2 my-lg-0" action= "{% url 'logout' %}">
 		      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" >Logout</button>
@@ -137,13 +142,15 @@
 		      {% block content %}{% endblock %}
 		    	
 		    </div>
+
 		    <div class="col-md-3">
-		      <div class="content-section">	 
+		      <div class="content-section">	
+		      	<br> 
 		          <ul class="list-group">
-		            <li class="list-group-item list-group-item-light">Latest Posts</li>
-		            <li class="list-group-item list-group-item-light">Announcements</li>
-		            <li class="list-group-item list-group-item-light">Calendars</li>
-		            <li class="list-group-item list-group-item-light">etc</li>
+		            <li class="list-group-item list-group-item-dark">Latest Posts</li>
+		            <a href="{% url 'announcements' %}" class="list-group-item list-group-item-action list-group-item-dark">Announcements</a>
+		            <li class="list-group-item list-group-item-light list-group-item-dark">Calendars</li>
+		            <li class="list-group-item list-group-item-light list-group-item-dark">etc</li>
 		          </ul>
 		        </p>
 		      </div>
