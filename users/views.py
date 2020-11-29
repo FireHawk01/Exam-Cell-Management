@@ -11,7 +11,7 @@ from exam.models import Sem1,Sem2,Sem3,Sem4,Sem5,Sem6,Sem7,Sem8
 @csrf_protect
 def login(request):
 	if request.method == "POST":
-		username = request.POST.get('username')
+		username = request.POST.get('username').split('@')[0].lower()
 		password = request.POST.get('password')
 		user = authenticate(request, username=username,password=password)
 		if user is not None:
@@ -85,7 +85,6 @@ def select_elective(request):
 		ele_1 = request.POST.get('Elective 1')
 		ele_2 = request.POST.get('Elective 2')
 		ele_3 = request.POST.get('Elective 3')
-		print("*")
 
 		#print(request.POST.get('Elective 2'))
 		sem = 6

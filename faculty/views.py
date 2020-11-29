@@ -45,7 +45,7 @@ def f_backlogs(request):
 					temp=('Semester 1',field.name)
 					back.append(temp)
 		except:
-			print ("1")
+			print ()
 		try:
 			query = Sem2.objects.get(enroll_no=stu.username)
 			fields = Sem2._meta.get_fields()
@@ -55,7 +55,7 @@ def f_backlogs(request):
 					temp=('Semester 2',field.name)
 					back.append(temp)
 		except:
-			print ("2")
+			print ()
 		try:
 			query = Sem3.objects.get(enroll_no=stu.username)
 			fields = Sem3._meta.get_fields()
@@ -65,7 +65,7 @@ def f_backlogs(request):
 					temp=('Semester 3',field.name)
 					back.append(temp) 
 		except:
-			print ("3")
+			print ()
 		try:
 			query = Sem4.objects.get(enroll_no=stu.username)
 			fields = Sem4._meta.get_fields()
@@ -75,7 +75,7 @@ def f_backlogs(request):
 					temp=('Semester 4',field.name)
 					back.append(temp) 
 		except:
-			print ("4")
+			print ()
 		try:
 			query = Sem5.objects.get(enroll_no=stu.username)
 			fields = Sem5._meta.get_fields()
@@ -85,7 +85,7 @@ def f_backlogs(request):
 					temp=('Semester 5',field.name)
 					back.append(temp) 
 		except:
-			print ("5")
+			print ()
 		try:
 			query = Sem6.objects.get(enroll_no=stu.username)
 			fields = Sem6._meta.get_fields()
@@ -95,7 +95,7 @@ def f_backlogs(request):
 					temp=('Semester 6',field.name)
 					back.append(temp)
 		except:
-			print ("6")
+			print ()
 		try:
 			query = Sem7.objects.get(enroll_no=stu.username)
 			fields = Sem7._meta.get_fields()
@@ -105,7 +105,7 @@ def f_backlogs(request):
 					temp=('Semester 7',field.name)
 					back.append(temp)
 		except:
-			print ("7")
+			print ()
 		try:
 			query = Sem8.objects.get(enroll_no=stu.username)
 			fields = Sem8._meta.get_fields()
@@ -115,7 +115,7 @@ def f_backlogs(request):
 					temp=('Semester 8',field.name)
 					back.append(temp)
 		except:
-			print ("8")
+			print ()
 		if back:
 			full_data[stu.username] = back 
 	print (full_data)
@@ -146,10 +146,14 @@ def approve_elective(request):
 		name1 = request.POST.get('idd1')
 		name1 = name1.split()
 		name2 = request.POST.get('idd2')
+		response = request.POST.get('response')
 		user_obj = User.objects.get(username=name1[0])
 		obj = Elective.objects.get(user=user_obj,semester=name1[1],elective=name2)
-		obj.approved=True
-		obj.save()
+		if response == 'approve':
+			obj.approved=True
+			obj.save()
+		else:
+			obj.delete()		
 
 	obj = Elective.objects.filter(approved=False)
 	return render(request, 'faculty/approve_elective.html',{'elective':obj})

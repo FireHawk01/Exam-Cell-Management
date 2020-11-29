@@ -3,6 +3,7 @@
 {% block content %}
 
 	<br>
+  <h3> <span class="badge badge-secondary">Profile</span></h3>
     
     	{% if context %}           
           <ul class="list-group">
@@ -14,6 +15,7 @@
           </ul>
          {% endif %}
            
+   <br>
    <a href="{% url 'updateprofile' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update</a>
       
    

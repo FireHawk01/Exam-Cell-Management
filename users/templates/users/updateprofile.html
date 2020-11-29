@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+	<h3> <span class="badge badge-secondary">Update Profile</span></h3>
             <form action="#" method="POST">
     			{% csrf_token %}
     			{{ updateform | crispy }}

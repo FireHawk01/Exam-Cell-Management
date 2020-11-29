@@ -15,7 +15,11 @@
 	<h3> <span class="badge badge-secondary">Announcements</span></h3>
 	<div class="list-group">	
 	{% for announce in announcements %}	
-	<a href="/{{ announce.file }}/" class="list-group-item list-group-item-action list-group-item-info">{{ announce.title }}</a>
+		{% if announce.file %}
+			<a href="/{{ announce.file }}/" class="list-group-item list-group-item-action list-group-item-info">{{ announce.title }}</a>
+		{% else %}
+			<a class="list-group-item">{{ announce.title }}</a>
+		{% endif %}
 	{% endfor %}
 	</div>
 		

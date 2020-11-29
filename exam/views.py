@@ -128,15 +128,13 @@ def show(request):
 
 
 def announcements(request):
-	query = Announcements.objects.all()
+	query = Announcements.objects.all().order_by('-id')
 	return render(request,"exam/announcements.html",{"announcements":query})
 
 
 
 def download(request, path):
     file_path = os.path.join(settings.MEDIA_ROOT, path)
-    print("*")
-    print (file_path)
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")

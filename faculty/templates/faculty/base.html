@@ -36,7 +36,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="{% url 'f_home' %}" class="logo"><b>Exam <span> Cell </span>&nbsp; &nbsp; &nbsp; &nbsp;Faculty Panel</b></a>
+      <a href="{% url 'f_home' %}" class="logo"><b>Exam <span> Cell </span>Faculty Panel</b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -60,8 +60,9 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">{{ user.get_username }}</h5>
+          <!--<p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>-->
+          <br>
+          <h5 class="centered">Hello,{{ user.get_username }}</h5>
           <li class="mt">
           	{% if request.path == '/faculty/home/' %}
             <a class="active" href="{% url 'f_home' %}">
@@ -79,7 +80,7 @@
             {% else %}
             <a href="{% url 'student_profile' %}">
             {% endif %}
-              <i class="fa fa-dashboard"></i>
+              <i class="fa fa-user"></i>
               <span>Student Profile</span>
               </a>
           </li>
@@ -90,7 +91,7 @@
             {% else %}
             <a href="{% url 'student_result' %}">
             {% endif %}
-              <i class="fa fa-dashboard"></i>
+              <i class="fa fa-id-card"></i>
               <span>Student Results</span>
               </a>
           </li>
@@ -102,7 +103,7 @@
             {% else %}
             <a href="{% url 'f_backlogs' %}">
             {% endif %}
-              <i class="fa fa-dashboard"></i>
+              <i class="fa fa-exclamation-triangle"></i>
               <span>Backlogs</span>
               </a>
           </li>
@@ -114,7 +115,7 @@
             {% else %}
             <a href="{% url 'f_view_elective' %}">
             {% endif %}
-              <i class="fa fa-dashboard"></i>
+              <i class="fa fa-search"></i>
               <span>View Electives</span>
               </a>
           </li>
@@ -126,7 +127,7 @@
             {% else %}
             <a href="{% url 'approve_elective' %}">
             {% endif %}
-              <i class="fa fa-dashboard"></i>
+              <i class="fa fa-check-circle"></i>
               <span>Approve Electives</span>
               </a>
           </li>
