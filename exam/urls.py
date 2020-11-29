@@ -6,6 +6,8 @@ urlpatterns = [
         path('result/', views.result, name= 'result'),
         path('result/show/', views.show, name= 'showresult'),
         path('announcements/', views.announcements, name= 'announcements'),
+        path('syllabus/', views.syllabus, name= 'syllabus'),
+        path('calendar/', views.calendar, name= 'calendar'),
         path('<path:path>/', views.download, name= 'announcements'),
 
 ]

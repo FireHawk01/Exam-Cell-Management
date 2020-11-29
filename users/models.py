@@ -28,6 +28,9 @@ class Elective(models.Model):
 	semester = models.IntegerField(default='6')
 	approved = models.BooleanField(default='False')
 
+	def __str__(self):
+		return f'{self.user}'
+
 	class Meta:
 		unique_together = (("user", "elective","semester"),)
 

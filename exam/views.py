@@ -6,7 +6,7 @@ from django.contrib import messages
 import io, os
 from django.http import FileResponse, HttpResponse, Http404
 from reportlab.pdfgen import canvas
-from faculty.models import Announcements
+from faculty.models import Announcements, Syllabus, Calendar
 from django.conf import settings
 
 
@@ -141,3 +141,13 @@ def download(request, path):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404
+
+
+def syllabus(request):
+	query = Syllabus.objects.all().order_by('-id')
+	return render(request,"exam/syllabus.html",{"syllabus":query})
+
+
+def calendar(request):
+	query = Calendar.objects.all().order_by('-id')
+	return render(request,"exam/calendar.html",{"calendar":query})

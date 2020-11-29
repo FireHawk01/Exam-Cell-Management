@@ -6,19 +6,19 @@
 <head>
 	    <script src="{% static 'exam/js/print.js' %}"></script>
 
-		<title>Announcements</title>
+		<title>Calendar</title>
 
 	
 </head>
 <body>
 	<a href="{% url 'home' %}" style="color:blue;">Back</a>
-	<h3> <span class="badge badge-secondary">Announcements</span></h3>
+	<h3> <span class="badge badge-secondary">Academic Calendar and Holidays</span></h3>
 	<div class="list-group">	
-	{% for announce in announcements %}	
-		{% if announce.file %}
-			<a href="/{{ announce.file }}/" class="list-group-item list-group-item-action list-group-item-info">{{ announce.title }}</a>
+	{% for cal in calendar %}	
+		{% if cal.file %}
+			<a href="/{{ cal.file }}/" class="list-group-item list-group-item-action list-group-item-info">{{ cal.title }}</a>
 		{% else %}
-			<a class="list-group-item">{{ announce.title }}</a>
+			<a class="list-group-item">{{ cal.title }}</a>
 		{% endif %}
 	{% endfor %}
 	</div>

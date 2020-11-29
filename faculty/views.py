@@ -155,7 +155,7 @@ def approve_elective(request):
 		else:
 			obj.delete()		
 
-	obj = Elective.objects.filter(approved=False)
+	obj = Elective.objects.filter(approved=False).order_by('-id')
 	return render(request, 'faculty/approve_elective.html',{'elective':obj})
 
 

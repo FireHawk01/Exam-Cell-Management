@@ -118,7 +118,7 @@
 
 		    {% if user.is_authenticated %}
 		      <ul class="navbar-nav ">
-			      <a class="navbar-brand" href="{% url 'home' %}">Welcome {{ user.first_name }}</a>
+			      <a class="navbar-brand" href="{% url 'showprofile' %}">Welcome {{ user.first_name }}</a>
 		  	  </ul>
 		      <form class="form-inline my-2 my-lg-0" action= "{% url 'logout' %}">
 		      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" >Logout</button>
@@ -149,11 +149,12 @@
 		    <div class="col-md-3">
 		      <div class="content-section">	
 		      	<br> 
+		      	<h3><span class="badge badge-info">Important Links</span></h3>
 		          <ul class="list-group">
-		            <li class="list-group-item list-group-item-dark">Latest Posts</li>
+		      
 		            <a href="{% url 'announcements' %}" class="list-group-item list-group-item-action list-group-item-dark">Announcements</a>
-		            <li class="list-group-item list-group-item-light list-group-item-dark">Calendars</li>
-		            <li class="list-group-item list-group-item-light list-group-item-dark">etc</li>
+		            <a href="{% url 'syllabus' %}" class="list-group-item list-group-item-action list-group-item-dark">Syllabus</a>
+		            <a href="{% url 'calendar' %}" class="list-group-item list-group-item-action list-group-item-dark">Academic Calendar and Holidays</a>
 		          </ul>
 		        </p>
 		      </div>
