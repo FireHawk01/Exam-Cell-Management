@@ -1,6 +1,21 @@
+@import url(https://fonts.googleapis.com/css2?family=Acme&display=swap);
 body {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+  background: #eaeaea;
+  font-family: 'Acme', sans-serif;
+  font-size:18px;
 }
+ul {
+ font-size:18px;
+}
+
+ol {
+ font-size:18px;
+}
+
+p {
+    font-size: 20px;
+}
+
 ::selection {
     background: rgba(103, 58, 183, 0.25);
 }
@@ -129,9 +144,7 @@ body {
 .content {
   max-width: 1080px;
 }
-p {
-    font-size: 16px;
-}
+
 
 .cards {
   -webkit-align-items: flex-start;
