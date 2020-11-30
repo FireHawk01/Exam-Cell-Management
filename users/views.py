@@ -86,28 +86,34 @@ def select_elective(request):
 		ele_2 = request.POST.get('Elective 2')
 		ele_3 = request.POST.get('Elective 3')
 
-		#print(request.POST.get('Elective 2'))
-		sem = 6
-		if ele_3 is not None:
-			sem = 7
-		user = request.user
+		if ele_1 != ele_2 and ele_2!= ele_3 and ele_3!=ele_1:
+			#print(request.POST.get('Elective 2'))
+			sem = 6
+			if ele_3 is not None:
+				sem = 7
+			user = request.user
 
 
-		obj1 = Elective(user=user,elective=ele_1,semester=sem)
-		obj1.save()
-		obj2 = Elective(user=user,elective=ele_2,semester=sem)
-		obj2.save()
-		if ele_3 is not None:
-			obj3 = Elective(user=user,elective=ele_3,semester=sem)
-			obj3.save()
-		return redirect('/users/elective/view')
+			obj1 = Elective(user=user,elective=ele_1,semester=sem)
+			obj1.save()
+			obj2 = Elective(user=user,elective=ele_2,semester=sem)
+			obj2.save()
+			if ele_3 is not None:
+				obj3 = Elective(user=user,elective=ele_3,semester=sem)
+				obj3.save()
+			return redirect('/users/elective/view/')
+		else:
+			messages.error(request, f' All electives should be different!')
+			return redirect('/users/elective/sem/select/')
 
 	#elif request.method == "POST" and request.POST.get('semester') :
 
 	else:
 		subject_res=dict()	
 		semester = request.POST.get('semester')
-		print(Elective.objects.filter(user=request.user,semester=semester))
+		if semester is None:
+			return redirect('/users/elective/sem/')
+		#print(Elective.objects.filter(user=request.user,semester=semester))
 		if Elective.objects.filter(user=request.user,semester=semester):
 			messages.error(request, f' Elective already chosen for this semester!')
 			return redirect('/users/elective/sem/')
