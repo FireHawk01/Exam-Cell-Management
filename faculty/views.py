@@ -9,7 +9,7 @@ from exam.models import Sem1,Sem2,Sem3,Sem4,Sem5,Sem6,Sem7,Sem8
 @login_required
 @user_passes_test(lambda u:u.groups.filter(name = 'faculty').exists())
 def f_home(request):
-	return render(request, 'faculty/base.html')
+	return render(request, 'faculty/f_home.html')
 
 
 @login_required

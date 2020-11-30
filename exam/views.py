@@ -13,7 +13,7 @@ from django.conf import settings
 def home(request):
 	if request.user.groups.filter(name = 'faculty').exists():
 		return redirect('/faculty/home')
-	return render(request, 'exam/base.html')
+	return render(request, 'exam/home.html')
 
 @login_required
 def result(request):

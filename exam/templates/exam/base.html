@@ -95,6 +95,7 @@
 		          <a class="dropdown-item" href="{% url 'backlogs' %}">Backlogs</a>
 		        </div>
 		      </li>
+		      {% endif %}
 		    </ul>
 		    <!--<ul class="navbar-nav ">
 		      <li class="nav-item">
@@ -112,9 +113,8 @@
 		          </i>
 		          Test
 		        </a>
-		      </li>
-		      {% endif %}
-		    </ul>-->
+		      </li>		      
+		    </ul> -->
 
 		    {% if user.is_authenticated %}
 		      <ul class="navbar-nav ">
