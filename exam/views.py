@@ -6,7 +6,7 @@ from django.contrib import messages
 import io, os
 from django.http import FileResponse, HttpResponse, Http404
 from reportlab.pdfgen import canvas
-from faculty.models import Announcements, Syllabus, Calendar
+from faculty.models import Announcements, Syllabus, Calendar, Questionp
 from django.conf import settings
 
 
@@ -151,3 +151,7 @@ def syllabus(request):
 def calendar(request):
 	query = Calendar.objects.all().order_by('-id')
 	return render(request,"exam/calendar.html",{"calendar":query})
+
+def questionp(request):
+	query = Questionp.objects.all().order_by('-id')
+	return render(request,"exam/questionp.html",{"questionp":query})

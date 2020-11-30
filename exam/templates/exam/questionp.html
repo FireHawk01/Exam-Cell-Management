@@ -1,0 +1,28 @@
+{% extends 'exam/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	    <script src="{% static 'exam/js/print.js' %}"></script>
+
+		<title>Question Papers</title>
+
+	
+</head>
+<body>
+	<a href="{% url 'home' %}" style="color:blue;">Back</a>
+	<h3> <span class="badge badge-secondary">Question Papers</span></h3>
+	<div class="list-group">	
+	{% for question in questionp %}	
+		{% if question.file %}
+			<a href="/{{ question.file }}/" class="list-group-item list-group-item-action list-group-item-info">{{ question.title }}</a>
+		{% else %}
+			<a class="list-group-item">{{ question.title }}</a>
+		{% endif %}
+	{% endfor %}
+	</div>
+		
+</body>
+</html>	
+{%endblock content%}
