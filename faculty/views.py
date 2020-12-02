@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from users.models import Profile, Elective
 from exam.models import Sem1,Sem2,Sem3,Sem4,Sem5,Sem6,Sem7,Sem8
+from users.views import net_sgpi
 
 @login_required
 @user_passes_test(lambda u:u.groups.filter(name = 'faculty').exists())
@@ -20,6 +21,8 @@ def student_profile(request):
 		try:
 			user_obj = User.objects.get(username=roll_no.lower())
 			obj = Profile.objects.get(user=user_obj)
+			obj.net_sgpi = net_sgpi(user_obj)
+			obj.save()
 			return render(request, 'faculty/student_profile.html',{'profile':obj})
 		except:
 			messages.error(request, f' Profile not found !!')

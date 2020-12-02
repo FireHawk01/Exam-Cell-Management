@@ -72,7 +72,8 @@ def net_sgpi(User):
 def showprofile(request):
 	try:
 		obj = Profile.objects.get(user=request.user)
-		obj.net_sgpi = net_sgpi(request.user)			
+		obj.net_sgpi = net_sgpi(request.user)
+		obj.save()			
 	except:
 		obj = Profile(user=request.user)
 		obj.save()
