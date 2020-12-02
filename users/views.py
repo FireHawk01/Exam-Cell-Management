@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import UpdateProfile
 from .models import Profile, Elective
 from exam.models import Sem1,Sem2,Sem3,Sem4,Sem5,Sem6,Sem7,Sem8
+import decimal
+
 
 @csrf_protect
 def login(request):
@@ -25,10 +27,52 @@ def login(request):
 			return redirect('/users/login')
 	return render(request, 'users/login.html')
 
+def net_sgpi(User):
+	credits = [27,49,70,91,119,145,167,187]
+	net=0
+	c=0
+	s1 = Sem1.objects.filter(enroll_no=User.username)
+	s2 = Sem2.objects.filter(enroll_no=User.username)
+	s3 = Sem3.objects.filter(enroll_no=User.username)
+	s4 = Sem4.objects.filter(enroll_no=User.username)
+	s5 = Sem5.objects.filter(enroll_no=User.username)
+	s6 = Sem6.objects.filter(enroll_no=User.username)
+	s7 = Sem7.objects.filter(enroll_no=User.username)
+	s8 = Sem8.objects.filter(enroll_no=User.username)
+	
+	if s1.count()!=0:
+		net=net+(27*s1[0].SGPI)
+		c=c+1
+	if s2.count()!=0:
+		net=net+(22*s2[0].SGPI)
+		c=c+1
+	if s3.count()!=0:
+		net=net+(21*s3[0].SGPI)
+		c=c+1
+	if s4.count()!=0:
+		net=net+(21*s4[0].SGPI)
+		c=c+1
+	if s5.count()!=0:
+		net=net+(28*s5[0].SGPI)
+		c=c+1
+	if s6.count()!=0:
+		net=net+(26*s6[0].SGPI)
+		c=c+1
+	if s7.count()!=0:
+		net=net+(22*s7[0].SGPI)
+		c=c+1
+	if s8.count()!=0:
+		net=net+(20*s8[0].SGPI)
+		c=c+1
+	d= net/credits[c-1]
+	return decimal.Decimal(d).quantize(decimal.Decimal('.01'), rounding=decimal.ROUND_DOWN)
+
+
 @login_required
 def showprofile(request):
 	try:
-		obj = Profile.objects.get(user=request.user)			
+		obj = Profile.objects.get(user=request.user)
+		obj.net_sgpi = net_sgpi(request.user)			
 	except:
 		obj = Profile(user=request.user)
 		obj.save()
